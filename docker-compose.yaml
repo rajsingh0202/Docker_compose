@@ -1,0 +1,41 @@
+version: "3.7"
+services:
+  app1:
+    container_name: knote-app1
+    image: learnitguide/knotejs:1.0
+    environment:
+      MONGO_URL: mongodb://mongo_db_host:27017/dev
+    ports:
+      - "80:3000"   # Exposes on port 80 for app1
+    depends_on:
+      - mongo
+    links:
+      - mongo:mongo_db_host
+
+  app2:
+    container_name: knote-app2
+    image: learnitguide/knotejs:1.0
+    environment:
+      MONGO_URL: mongodb://mongo_db_host:27017/dev
+    ports:
+      - "81:3000"   # Exposes on port 81 for app2
+    depends_on:
+      - mongo
+    links:
+      - mongo:mongo_db_host
+
+  app3:
+    container_name: knote-app3
+    image: learnitguide/knotejs:1.0
+    environment:
+      MONGO_URL: mongodb://mongo_db_host:27017/dev
+    ports:
+      - "82:3000"   # Exposes on port 82 for app3
+    depends_on:
+      - mongo
+    links:
+      - mongo:mongo_db_host
+
+  mongo:
+    container_name: knote-mongo
+    image: mongo
